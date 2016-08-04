@@ -4,6 +4,11 @@
 #include "ModulesApp.h"
 #include "MooseSyntax.h"
 
+#include "StressDivergenceTensorsWithDamage.h"
+#include "DamageGradientEnergy.h"
+#include "SurfaceAndStrainEnergyContributionToDamage.h"
+#include "DamageIrreversibilityPenalty.h"
+
 template<>
 InputParameters validParams<MarisolmostafacollaborationApp>()
 {
@@ -45,6 +50,10 @@ extern "C" void MarisolmostafacollaborationApp__registerObjects(Factory & factor
 void
 MarisolmostafacollaborationApp::registerObjects(Factory & factory)
 {
+  registerKernel(StressDivergenceTensorsWithDamage);
+  registerKernel(DamageGradientEnergy);
+  registerKernel(SurfaceAndStrainEnergyContributionToDamage);
+  registerKernel(DamageIrreversibilityPenalty);
 }
 
 // External entry point for dynamic syntax association
